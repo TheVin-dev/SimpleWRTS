@@ -41,8 +41,7 @@ def try_again(arr, idx, depth):
         depth += 1 
     return res 
 
-
-def main_loop():
+def main():
     arr = load_list(DATA_PATH)
     arr = np.concatenate((arr,np.zeros(shape=arr.shape).astype(int)),axis=1)  # Nx4 arr, 3 column is total, 4 column is correct 
     PLAYING = True
@@ -63,4 +62,4 @@ def main_loop():
             res = try_again(arr, choic_idx, depth=0)
             print('On a list maybe?')
 if __name__ == "__main__":
-    main_loop()
+    main()
