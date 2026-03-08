@@ -41,16 +41,29 @@ def try_again(arr, idx, depth):
         depth += 1 
     return res 
 
+def choose_idx(arr):
+    first_choice = np.random.choice(arr[1:].shape[0])
+    if arr[first_choice,4] == 1:
+        while True:
+            choice = np.random.choice(arr[1:].shape[0])
+            if arr[first_choice,4] == 1:
+                continue
+            else:
+                return choice
+            
+    else:
+        return first_choice
 def main():
     arr = load_list(DATA_PATH)
-    arr = np.concatenate((arr,np.zeros(shape=arr.shape).astype(int)),axis=1)  # Nx4 arr, 3 column is total, 4 column is correct 
+    arr = np.concatenate((arr,np.zeros((arr.shape[0],3)).astype(int)),axis=1)  # Nx4 arr, 3 column is total, 4 column is correct 
     PLAYING = True
     print("Welcome to my SimpleWRTS\nA simple tool to learn words (hopefully)")
     print("Translate the following words to the other language:")
     while PLAYING:     
-        choic_idx = np.random.choice(arr[1:].shape[0])
+        choic_idx = choose_idx(arr)# np.random.choice(arr[1:].shape[0])  lets keep track of what already did instead. 
+
         choice = arr[choic_idx][0]
-        print(f"Italian: {choice} ----- for testing: {arr[choic_idx][1]}")
+        print(f"Italian: {choice}")
         s = str(input("Your guess: "))
         res = evaluate(arr[choic_idx][1],s)
         if res:
