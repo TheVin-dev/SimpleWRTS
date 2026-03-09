@@ -74,5 +74,7 @@ def main():
         else:
             res = try_again(arr, choic_idx, depth=0)
             print('On a list maybe?')
+
+            
 if __name__ == "__main__":
     main()
