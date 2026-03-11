@@ -15,9 +15,6 @@ class UI():
     DATA_PATH = pathlib.Path(r"M:\1. Personal\Programming\simpleWRTS\data")
     TOTAL_COLUMN = 2 
     CORRECT_COLUMN = 3
-    IGNORE_ROW = 0 
-
-
     def __init__(self):
         self.input_history = ''  
         self.load_data()
@@ -171,15 +168,14 @@ class UI():
                 with ui.element("div").classes("flex-1 items-right bg-gray-100 p-2 rounded-lg"):
                     # Title row (centered)
                     self.curr_list_lbl = ui.label(f"Current list: {self.current_name}").classes("w-full text-left")  
-                    # Row for "Please translate to Dutch:" and dropdown menu
+        #             # Row for "Please translate to Dutch:" and dropdown menu
                     with ui.row().classes("w-full items-center"):
                         ui.label("Please translate to Dutch:").classes("text-h6 italic text-gray-700")
                         
                     # Target word
                     self.lbl_target = ui.label(f"{self.curr_target}").classes("text-h2 text-gray-800").style("text-align: center; width: 50%;")
 
-                    # Add vertical whitespace
-                    # Input row
+        #             # Input row
                     self.curr_input = ui.input(
                             placeholder="start typing",
                         ).on("keydown.enter", self.validate_input).classes("w-70 text-h3 p-4").props('autocomplete="off"')
