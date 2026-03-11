@@ -58,3 +58,4 @@ with ui.card().classes("mx-auto w-full max-w-2xl p-6 shadow-lg").style("backgrou
         ).on("keydown.enter", submit).classes("w-96 text-h3 p-4")
 
 ui.run(title="Italian Practice")
+    
