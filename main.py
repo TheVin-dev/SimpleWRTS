@@ -113,7 +113,19 @@ class UI():
             self.feedback_icon.name = 'cancel'
             self.feedback_icon.classes("text-red")
 
-
+    def try_again(self, depth = 3):
+        """
+        Difficulty here is getting the event caller to call this function to keep capturing input
+        """
+        while depth < 3:
+            choice = self.choice_idx
+            res = evaluate(arr[idx][1],s)
+            self.current_data[self.choice_idx,self.TOTAL_COLUMN]   = int(self.current_data[self.choice_idx,self.TOTAL_COLUMN])  + 1
+            if res: 
+                self.current_data[self.choice_idx,self.CORRECT_COLUMN]   = int(self.current_data[self.choice_idx,self.CORRECT_COLUMN])  + 1
+                return res
+            depth += 1 
+        return res 
 
     def run(self):
         ui.run()
