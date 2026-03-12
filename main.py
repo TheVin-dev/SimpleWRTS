@@ -79,7 +79,7 @@ class UI():
         self.lbl_target.text = self.curr_target
         self.curr_target_dutch = self.current_data[self.choice_idx][1]
         self.curr_input.value = ''
-        self.dbg_lbl.text = f"Correct answer: {self.curr_target_dutch}"
+        # self.dbg_lbl.text = f"Correct answer: {self.curr_target_dutch}"
         self.feedback_icon.classes("")
         return 
     
@@ -114,7 +114,7 @@ class UI():
             self.feedback_icon.classes("text-red")
 
 
-    
+
     def run(self):
         ui.run()
     
@@ -122,7 +122,7 @@ class UI():
         new_list = self.set_select 
         self.current_name = new_list.value
         self.load_data(name = self.current_name)
-        self.curr_list_lbl.text = f"Current list: {self.current_name}"
+        self.curr_list_lbl.text = f"Current list: {self.current_name.split('.')[0]}"
         self.dialog.close()
         self.next_step()
     def get_current_data(self):
@@ -160,15 +160,14 @@ class UI():
 
     def init_ui(self):
         bg_color = ui.colors(primary="#73baede8")  # AliceBlue background
-        with ui.card().classes("w-full max-w-4xl p-6 shadow-lg").style("background-color: #73baede8;"):  
+        with ui.card().classes("w-full max-w-4xl p-6 shadow-lg fixed-center").style("background-color: #73baede8;"):  
             with ui.row().classes('w-full'):
                 ui.label("SimpleWRTS").classes("text-h3 font-bold text-gray-800").style("text-align: center; width: 80%;")
                 ui.button(icon='more_vert', color='gray',on_click=self.data_viewer).props('flat round')  # Visible icon and styling
             with ui.row().classes("w-full"):
                 with ui.element("div").classes("flex-1 items-right bg-gray-100 p-2 rounded-lg"):
-                    # Title row (centered)
-                    self.curr_list_lbl = ui.label(f"Current list: {self.current_name}").classes("w-full text-left")  
-        #             # Row for "Please translate to Dutch:" and dropdown menu
+                   
+        #            # Row for "Please translate to Dutch:" and dropdown menu
                     with ui.row().classes("w-full items-center"):
                         ui.label("Please translate to Dutch:").classes("text-h6 italic text-gray-700")
                         
@@ -180,12 +179,12 @@ class UI():
                             placeholder="start typing",
                         ).on("keydown.enter", self.validate_input).classes("w-70 text-h3 p-4").props('autocomplete="off"')
                     # For debugging and testing the flow of the progam 
-                    self.dbg_lbl = ui.label(f"Correct answer: {self.curr_target_dutch}")
+                    # self.dbg_lbl = ui.label(f"Correct answer: {self.curr_target_dutch}")
                     self.feedback_icon = ui.icon("", size="2rem")
             
                 with ui.element("div").classes("w-1/4 items-right bg-gray-100 p-2 rounded-lg"):
                     ui.label("Performance").classes("text-h5 font-bold text-gray-800")
                     self.total_guesses_label = ui.label(f"Total Guesses : {self.total_guesses}").classes("text-h6")
                     self.correct_guesses_label = ui.label(f"Correct Guesses: {self.correct_guesses}").classes("text-h6")
-
+                    self.curr_list_lbl = ui.label(f"Current list: {self.current_name.split('.')[0]}").classes("w-full text-left")  
 main()
